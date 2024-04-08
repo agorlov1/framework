@@ -10,15 +10,15 @@ class Response
 
     private array $headers = [];
 
-    public function __construct(mixed $content, int $statusCode, array $headers)
+    public function __construct(mixed $content)
     {
         $this->content = $content;
-        $this->statusCode = $statusCode;
-        $this->headers = $headers;
+//        $this->statusCode = $statusCode;
+//        $this->headers = $headers;
     }
 
     public function send()
     {
-       echo $this->content;
+        echo $this->content;
     }
 }

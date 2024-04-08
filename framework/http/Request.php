@@ -1,9 +1,8 @@
 <?php
 
-
 namespace somecode\Framework\http;
 
-final class Request
+class Request
 {
     private array $getname;
 
@@ -11,7 +10,14 @@ final class Request
 
     private array $cookies;
 
+    private array $files;
+
     private array $server;
+
+    public function getFiles(): array
+    {
+        return $this->files;
+    }
 
     public function getGetname(): array
     {
@@ -37,16 +43,28 @@ final class Request
         array $getname,
         array $postdata,
         array $cookies,
+        array $files,
         array $server
     ) {
         $this->getname = $getname;
         $this->postdata = $postdata;
         $this->cookies = $cookies;
+        $this->files = $files;
         $this->server = $server;
     }
 
     public static function createFromGlobals(): static
     {
-        return new self($_GET,$_POST,$_COOKIE,$_SERVER);
+        return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+    }
+
+    public function getPath(): string
+    {
+        return strtok($this->server['REQUEST_URI'], '?');
+    }
+
+    public function getMethod(): string
+    {
+        return $this->server['REQUEST_METHOD'];
     }
 }

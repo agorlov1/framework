@@ -18,5 +18,6 @@
     "symfony/var-dumper": "6.4.*"
   },
   "require": {
+    "nikic/fast-route": "^1.3"
   }
 }
