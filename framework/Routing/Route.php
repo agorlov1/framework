@@ -15,6 +15,7 @@ class Route
 
     public static function post(string $uri, array $handler): array
     {
-        return ['post', $uri, $handler];
+
+        return ['POST', $uri, $handler];
     }
 }
